@@ -88,8 +88,69 @@ const data = [
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
-];
+  ,
+  {
+    baslik: '2022\TOGG PİYASADA ',
+    tarih: '1 Kasım 2022',
+    ilkParagraf: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
 
+    ikinciParagraf: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    ucuncuParagraf: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  }
+];
+function haberYapici(data) {
+  const icerik = document.createElement("div");
+  icerik.classList.add("article");
+
+  const baslik = document.createElement("h2");
+  icerik.appendChild(baslik);
+  baslik.textContent = `${data.baslik}`
+
+  const tarih = document.createElement("p");
+
+
+
+
+
+
+
+  
+  tarih.className = "date";
+  icerik.appendChild(tarih);
+  tarih.textContent = `${data.tarih}`
+
+  for (let i = 0; i < 3; i++) {
+    const paragraf = document.createElement("p");
+    const x = ["ilkParagraf", "ikinciParagraf", "ucuncuParagraf"];
+    paragraf.textContent = data[`${x[i]}`];
+    icerik.append(paragraf);
+  };
+
+  const span = document.createElement("span");
+  span.className = "expandButton";
+  span.textContent = "Haber Detayı için tıklayın";
+  icerik.append(span);
+
+  span.addEventListener("click", (e) => {
+    icerik.classList.toggle("article-open");
+  })
+
+  return icerik;
+}
+const haberlerDiv = document.querySelector(".articles");
+
+data.forEach(function (haberData) {
+  const haber = haberYapici(haberData);
+  haberlerDiv.appendChild(haber);
+});
 /*
   Adım 1: Haber oluşturmak için 'haberYapici' adında bir bileşen(component) oluşturun.
   Bileşeniniz, argümanı haberleri içeren dizi olarak alan bir fonksiyon olacak,
